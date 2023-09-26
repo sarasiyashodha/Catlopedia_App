@@ -30,11 +30,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image(
-              image: AssetImage('images/cat_logo.png'),
+              image: AssetImage('images/cat_logo.jpg'),
               width: 250.0,
             ),
             Text(
-              "Pupedia",
+              "Catlopedia",
               style: TextStyle(
                 fontFamily: 'Bubblegum Sans',
                 fontSize: 60.0,
