@@ -9,6 +9,13 @@ class ApiService {
   Future<void> getCatDetails() async{
     Response response = await get(Uri.parse("$catDetails$apiKey"));
 
+    if (response.statusCode == 200) {
+      List<dynamic> body = json.decode(response.body);
+   
+    } else {
+
+    }
+
   }
 
 
