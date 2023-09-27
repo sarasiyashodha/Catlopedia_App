@@ -157,6 +157,21 @@ class ApiService {
     }
   }
 
+  Future<String> fetchCatImageByBreed(String referenceImageId) async {
+    final response2 = await get(
+      Uri.parse("https://api.thecatapi.com/v1/images/$referenceImageId"),
+    );
+
+    if (response2.statusCode == 200) {
+      Map<String, dynamic> body = json.decode(response2.body);
+      final imageUrl = body['url'] ?? '';
+      return imageUrl;
+    } else {
+      throw Exception(
+          'Failed to fetch cat image for $referenceImageId: ${response2.statusCode}');
+    }
+  }
+
 
 
 

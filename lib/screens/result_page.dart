@@ -4,7 +4,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ResultPage extends StatefulWidget {
   final String selectedBreed;
-  const ResultPage({Key? key, required this.selectedBreed}) : super(key: key);
+  final String selectedReferenceImageId;
+  final String selectedImageUrl;
+
+  const ResultPage({Key? key, required this.selectedBreed, required this.selectedReferenceImageId, required this.selectedImageUrl}) : super(key: key);
 
   @override
   State<ResultPage> createState() => _ResultPageState();
@@ -29,6 +32,7 @@ class _ResultPageState extends State<ResultPage> {
     fetchCatLifespan();
     fetchCatTemperament();
     fetchCatDescription();
+    fetchCatImage();
   }
 
   Future<void> fetchCatOrigin() async {
@@ -39,7 +43,7 @@ class _ResultPageState extends State<ResultPage> {
 
       });
     } catch (e) {
-      Text('Error fetching the image.');
+      Text('Error fetching the origin.');
     }
   }
 
@@ -51,7 +55,7 @@ class _ResultPageState extends State<ResultPage> {
 
       });
     } catch (e) {
-      Text('Error fetching the image.');
+      Text('Error fetching the lifespan.');
     }
   }
 
@@ -63,7 +67,7 @@ class _ResultPageState extends State<ResultPage> {
 
       });
     } catch (e) {
-      Text('Error fetching the image.');
+      Text('Error fetching the temperament.');
     }
   }
 
@@ -72,6 +76,18 @@ class _ResultPageState extends State<ResultPage> {
       final description = await service2.getDescriptionForBreed(widget.selectedBreed);
       setState(() {
         this.description = description;
+
+      });
+    } catch (e) {
+      Text('Error fetching the description.');
+    }
+  }
+
+  Future<void> fetchCatImage() async {
+    try {
+      final image = await service2.fetchCatImageByBreed(widget.selectedReferenceImageId);
+      setState(() {
+        imageUrl = image;
 
       });
     } catch (e) {

@@ -100,18 +100,31 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                     child: ListTile(
                       title: Text(breedName),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) {
-                              return ResultPage(
-                                selectedBreed: breedName,
-                              );
-                            },
-                          ),
-                        );
+                      onTap: () async {
+                        try {
+                          final referenceImageId = await service1.getReferenceImageIdForBreed(breedName);
+                          final imageUrl = await service1.fetchCatImageByBreed(referenceImageId);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return ResultPage(
+                                  selectedBreed: breedName,
+                                  selectedReferenceImageId: referenceImageId,
+                                  selectedImageUrl: imageUrl,
+                                );
+                              },
+                            ),
+                          );
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Error: $e'),
+                            ),
+                          );
+                        }
                       },
+
                     ),
                   );
                 },
