@@ -4,6 +4,8 @@ import 'package:http/http.dart';
 class ApiService {
 
   String catDetails = "https://api.thecatapi.com/v1/breeds";
+  String catImages = "https://api.thecatapi.com/v1/images/0XYvRd7oD";
+
 
   Future<List<String>> getCatBreedNames() async {
     try {
@@ -26,6 +28,21 @@ class ApiService {
       throw Exception('Error: $e');
     }
   }
+
+  // Future<String> fetchCatReferenceImageID(String breedName) async {
+  //   Response response2 = await get(
+  //     Uri.parse(catDetails),
+  //   );
+  //
+  //   if (response2.statusCode == 200) {
+  //     List<dynamic> body = json.decode(response2.body);
+  //     String referenceImageID = body["reference_image_id"];
+  //     return referenceImageID;
+  //   } else {
+  //     throw Exception(
+  //         'Failed to fetch dog image for $breedName: ${response2.statusCode}');
+  //   }
+  // }
 
 
 

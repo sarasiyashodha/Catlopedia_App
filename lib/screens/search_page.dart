@@ -62,7 +62,7 @@ class _SearchPageState extends State<SearchPage> {
               height: 30.0,
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.only(left: 10.0, top: 16.0, right: 10.0, bottom: 10.0),
               child: TextField(
                 onChanged: (value) {
                   setState(() {
@@ -91,6 +91,7 @@ class _SearchPageState extends State<SearchPage> {
                 itemBuilder: (context, index) {
                   final breedName = filteredBreeds[index];
                   return Container(
+                    margin: EdgeInsets.only(left: 10.0, right: 10.0),
                     decoration: BoxDecoration(
                       color: Colors.white54,
                       border:
