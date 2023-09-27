@@ -2,7 +2,7 @@ class CatModel {
   String? id;
   String? name;
   String? origin;
-  String? lifeSpan;
+  String? lifespan;
   String? temperament;
   String? description;
   String? referenceImageID;
@@ -11,7 +11,7 @@ class CatModel {
       {this.id,
       this.name,
       this.origin,
-      this.lifeSpan,
+      this.lifespan,
       this.temperament,
       this.description,
       this.referenceImageID,
@@ -22,7 +22,7 @@ class CatModel {
       id: json['id'],
       name: json['name'],
       origin: json['origin'],
-      lifeSpan: json['life_span'],
+      lifespan: json['life_span'],
       temperament: json['temperament'],
       description: json['description'],
       referenceImageID: json['reference_image_id']

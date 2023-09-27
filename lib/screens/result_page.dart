@@ -3,7 +3,8 @@ import 'package:catlopedia/services/api_service.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ResultPage extends StatefulWidget {
-  const ResultPage({super.key});
+  final String selectedBreed;
+  const ResultPage({Key? key, required this.selectedBreed}) : super(key: key);
 
   @override
   State<ResultPage> createState() => _ResultPageState();
@@ -60,7 +61,7 @@ class _ResultPageState extends State<ResultPage> {
                 ),
                 child: Center(
                   child: Text(
-                    'hello',
+                    '${widget.selectedBreed}',
                     style: TextStyle(
                       fontFamily: 'PT Serif Caption',
                       fontSize: 40.0,

@@ -105,7 +105,9 @@ class _SearchPageState extends State<SearchPage> {
                           context,
                           MaterialPageRoute(
                             builder: (BuildContext context) {
-                              return ResultPage();
+                              return ResultPage(
+                                selectedBreed: breedName,
+                              );
                             },
                           ),
                         );

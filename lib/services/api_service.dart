@@ -4,8 +4,6 @@ import 'package:http/http.dart';
 class ApiService {
 
   String catDetails = "https://api.thecatapi.com/v1/breeds";
-  String catImages = "https://api.thecatapi.com/v1/images/0XYvRd7oD";
-
 
   Future<List<String>> getCatBreedNames() async {
     try {
@@ -29,20 +27,88 @@ class ApiService {
     }
   }
 
-  // Future<String> fetchCatReferenceImageID(String breedName) async {
-  //   Response response2 = await get(
-  //     Uri.parse(catDetails),
-  //   );
-  //
-  //   if (response2.statusCode == 200) {
-  //     List<dynamic> body = json.decode(response2.body);
-  //     String referenceImageID = body["reference_image_id"];
-  //     return referenceImageID;
-  //   } else {
-  //     throw Exception(
-  //         'Failed to fetch dog image for $breedName: ${response2.statusCode}');
-  //   }
-  // }
+  Future<String> getReferenceImageIdForBreed(String breedName) async {
+    try {
+      Response response = await get(Uri.parse(catDetails));
+
+      if (response.statusCode == 200) {
+        List<dynamic> body = json.decode(response.body);
+
+        for (dynamic item in body) {
+          String name = item['name'] ?? '';
+          String referenceImageId = item['reference_image_id'] ?? '';
+
+          if (name.toLowerCase() == breedName.toLowerCase()) {
+            return referenceImageId;
+          }
+        }
+
+        // If the breed name is not found, return an empty string or handle it accordingly
+        return '';
+      } else {
+        throw Exception('Failed to load cat breeds');
+      }
+    } catch (e) {
+      throw Exception('Error: $e');
+    }
+  }
+
+  Future<String> getOriginForBreed(String breedName) async {
+    try {
+      Response response = await get(Uri.parse(catDetails));
+
+      if (response.statusCode == 200) {
+        List<dynamic> body = json.decode(response.body);
+
+        for (dynamic item in body) {
+          String name = item['name'] ?? '';
+          String origin = item['origin'] ?? '';
+
+          if (name.toLowerCase() == breedName.toLowerCase()) {
+            return origin;
+          }
+        }
+
+        // If the breed name is not found, return an empty string or handle it accordingly
+        return '';
+      } else {
+        throw Exception('Failed to load cat breeds');
+      }
+    } catch (e) {
+      throw Exception('Error: $e');
+    }
+  }
+
+  Future<String> getLifespanForBreed(String breedName) async {
+    try {
+      Response response = await get(Uri.parse(catDetails));
+
+      if (response.statusCode == 200) {
+        List<dynamic> body = json.decode(response.body);
+
+        for (dynamic item in body) {
+          String name = item['name'] ?? '';
+          String lifespan = item['life_span'] ?? '';
+
+          if (name.toLowerCase() == breedName.toLowerCase()) {
+            return lifespan;
+          }
+        }
+
+        // If the breed name is not found, return an empty string or handle it accordingly
+        return '';
+      } else {
+        throw Exception('Failed to load cat breeds');
+      }
+    } catch (e) {
+      throw Exception('Error: $e');
+    }
+  }
+
+
+
+
+
 
 
 
