@@ -14,7 +14,70 @@ class _ResultPageState extends State<ResultPage> {
 
   final ApiService service2 = ApiService();
 
+  String catName = '';
+  String origin = '';
+  String lifespan = '';
+  String temperament = '';
+  String description = '';
   String imageUrl = '';
+
+
+  @override
+  void initState() {
+    super.initState();
+    fetchCatOrigin();
+    fetchCatLifespan();
+    fetchCatTemperament();
+    fetchCatDescription();
+  }
+
+  Future<void> fetchCatOrigin() async {
+    try {
+      final origin = await service2.getOriginForBreed(widget.selectedBreed);
+      setState(() {
+        this.origin = origin;
+
+      });
+    } catch (e) {
+      Text('Error fetching the image.');
+    }
+  }
+
+  Future<void> fetchCatLifespan() async {
+    try {
+      final lifespan = await service2.getLifespanForBreed(widget.selectedBreed);
+      setState(() {
+        this.lifespan = lifespan;
+
+      });
+    } catch (e) {
+      Text('Error fetching the image.');
+    }
+  }
+
+  Future<void> fetchCatTemperament() async {
+    try {
+      final temperament = await service2.getTemperamentForBreed(widget.selectedBreed);
+      setState(() {
+        this.temperament = temperament;
+
+      });
+    } catch (e) {
+      Text('Error fetching the image.');
+    }
+  }
+
+  Future<void> fetchCatDescription() async {
+    try {
+      final description = await service2.getDescriptionForBreed(widget.selectedBreed);
+      setState(() {
+        this.description = description;
+
+      });
+    } catch (e) {
+      Text('Error fetching the image.');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +111,10 @@ class _ResultPageState extends State<ResultPage> {
               ),
             ),
             Positioned(
-              top: 400,
+              top: 360,
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 200,
+                height: 500,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -59,13 +122,51 @@ class _ResultPageState extends State<ResultPage> {
                     topRight: Radius.circular(30),
                   ),
                 ),
-                child: Center(
-                  child: Text(
-                    '${widget.selectedBreed}',
-                    style: TextStyle(
-                      fontFamily: 'PT Serif Caption',
-                      fontSize: 40.0,
-                    ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '${widget.selectedBreed}',
+                        style: TextStyle(
+                          fontFamily: 'PT Serif Caption',
+                          fontSize: 40.0,
+                        ),
+                      ),
+                      Text(
+                        'Origin: $origin', // Display the origin
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      Text(
+                        'Lifespan: $lifespan years', // Display the lifespan
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Temperament: $temperament', // Display the origin
+                          style: TextStyle(
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Description: $description', // Display the origin
+                          style: TextStyle(
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
