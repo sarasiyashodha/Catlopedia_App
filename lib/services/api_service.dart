@@ -4,24 +4,32 @@ import 'package:http/http.dart';
 class ApiService {
 
   String catDetails = "https://api.thecatapi.com/v1/breeds";
-  // String catImages = "https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=beng&";
-  // String apiKey = "api_key=live_uwlmDqZYA9CWwBJzIUHk6xAdMzKUX4xAFo5hHkkI0cekWj5HFYLkbwKmsZvjZXr0";
 
-  Future<void> getCatDetails() async{
-    Response response = await get(Uri.parse(catDetails));
+  Future<List<String>> getCatBreedNames() async {
+    try {
+      Response response = await get(Uri.parse(catDetails));
 
-    if (response.statusCode == 200) {
-      List<dynamic> body = json.decode(response.body);
+      if (response.statusCode == 200) {
+        List<dynamic> body = json.decode(response.body);
+        List<String> breedNames = [];
 
+        for (dynamic item in body) {
+          String breedName = item['name'] ?? '';
+          breedNames.add(breedName);
+        }
 
-      print(body);
-
-
-    } else {
-
+        return breedNames;
+      } else {
+        throw Exception('Failed to load cat breed names');
+      }
+    } catch (e) {
+      throw Exception('Error: $e');
     }
-
   }
+
+
+
+
 
 
 }

@@ -1,18 +1,28 @@
 class CatModel {
   String? id;
   String? name;
-  String? temperament;
   String? origin;
   String? lifeSpan;
+  String? temperament;
   String? description;
-  String? imageUrl;
 
   CatModel(
       {this.id,
       this.name,
-      this.temperament,
       this.origin,
       this.lifeSpan,
-      this.description,
-      this.imageUrl});
+      this.temperament,
+      this.description});
+
+  factory CatModel.fromJson(Map<String, dynamic> json) {
+    return CatModel(
+      id: json['id'],
+      name: json['name'],
+      origin: json['origin'],
+      lifeSpan: json['life_span'],
+      temperament: json['temperament'],
+      description: json['description']
+
+    );
+  }
 }
