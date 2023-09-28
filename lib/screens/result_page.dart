@@ -173,6 +173,9 @@ class _ResultPageState extends State<ResultPage> {
                           ),
                         ),
                       ),
+                      SizedBox(
+                        height: 5.0,
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
