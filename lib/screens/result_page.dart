@@ -149,28 +149,62 @@ class _ResultPageState extends State<ResultPage> {
                           fontSize: 40.0,
                         ),
                       ),
-                      Text(
-                        'Origin: $origin', // Display the origin
-                        style: TextStyle(
-                          fontSize: 18.0,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Origin: ', // Display the origin
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '$origin', // Display the origin
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        'Lifespan: $lifespan years', // Display the lifespan
-                        style: TextStyle(
-                          fontSize: 18.0,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Lifespan: ', // Display the lifespan
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '$lifespan years', // Display the lifespan
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(
-                        height: 5.0,
+                        height: 10.0,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Temperament: $temperament', // Display the origin
-                          style: TextStyle(
-                            fontSize: 18.0,
-                          ),
+                      SingleChildScrollView(
+                        child: Row(
+                          children: [
+                            Text(
+                              'Temperament: ', // Display the origin
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              '$temperament', // Display the origin
+                              style: TextStyle(
+                                fontSize: 18.0,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       SizedBox(
